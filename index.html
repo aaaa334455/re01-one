@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>康文昌的在线HTML 教学小工具</title>
+    <style>
+      body {
+        /* 1. 设置背景图片路径（替换成你的蜘蛛侠图片路径） */
+            background-image: url("https://i.imgs.ovh/2026/02/10/ypBstc.png");
+            /* 2. 让背景图片覆盖整个视口，保持宽高比，裁剪超出部分 */
+            background-size: cover;
+            /* 3. 背景图片居中显示 */
+            background-position: center center;
+            /* 4. 背景图片固定，滚动页面时不跟随滚动（可选，更有沉浸感） */
+            background-attachment: fixed;
+            /* 5. 禁止背景图片重复 */
+            background-repeat: no-repeat;
+            /* 可选：给背景加轻微遮罩，提升前景内容的可读性（避免背景太亮/暗导致文字看不清） */
+            background-color: rgba(0, 0, 0, 0.5);
+            background-blend-mode: overlay;
+            /* 清除body默认边距，避免背景有白边 */
+            margin: 0;
+            padding: 0;
+            min-height: 100vh; /* 保证body高度至少占满屏幕 */
+      }
+      /*要求1：为了让图片处于水平、垂直居中进行的操作*/
+      .container {
+        display: flex; /* 启用Flex布局 */
+        justify-content: center; /* 水平居中 */
+        align-items: center; /* 垂直居中 */
+        width: 100%; /* 调整容器宽度，适配图片 */
+        height: 500px; /* 调整容器高度，适配图片 */
+        border: 0px solid #ccc;
+        /* 可选：如果图片还是超出，可加溢出隐藏 */
+        /* overflow: hidden; */
+      }
+
+      /* 让图片自适应容器，避免超出 */
+      .container img {
+        max-width: 100%; /* 图片最大宽度不超过容器 */
+        max-height: 100%; /* 图片最大高度不超过容器 */
+        /* 保留图片原有边框，可根据需要调整 */
+        border: 2px solid #000;
+      }
+      /*要求1：结束*/
+      /*要求2：为了文本首行缩进进行的操作*/
+      .indent-paragraph {
+        text-indent: 2em;
+        line-height: 1.8;
+      }
+      /*要求2：结束*/
+      /*要求3：添加四个并列图片和图注*/
+      /* 父容器：控制整体横向排列 */
+      .image-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start; /* 让每个图片+图注的子容器顶部对齐 */
+        padding: 20px;
+        border: 0px solid #eee;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 10px; /* 子容器之间的间距，替代margin更简洁 */
+      }
+
+      /* 子容器：包裹单张图片+图注 */
+      .image-item {
+        display: flex;
+        flex-direction: column; /* 让图片在上、图注在下垂直排列 */
+        align-items: center; /* 图片和图注都居中对齐 */
+        width: 22%; /* 和之前图片宽度一致，保证整体比例 */
+      }
+
+      /* 图片样式：保证自适应且不变形 */
+      .image-item img {
+        width: 100%; /* 占满子容器宽度 */
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 8px; /* 图片和图注之间的间距 */
+      }
+
+      /* 图注样式：贴合论文排版风格 */
+      .image-caption {
+        font-size: 18px; /* 论文图注常用字号 */
+        color: #14f104; /* 深色文字，保证可读性 */
+        text-align: center; /* 图注文字居中 */
+        line-height: 1.4; /* 行高优化阅读体验 */
+        /* 可选：添加图注编号样式，更贴合论文 */
+        font-family: "Times New Roman", serif;
+      }
+
+      /* 响应式适配：屏幕变小时自动换行 */
+      @media (max-width: 768px) {
+        .image-container {
+          flex-wrap: wrap;
+        }
+        .image-item {
+          width: 45%; /* 每行显示2个（图片+图注） */
+          margin-bottom: 20px; /* 换行后增加上下间距 */
+        }
+      }
+      /*要求3：结束*/
+    </style>
+  </head>
+  <>
+    <div 
+      style="
+        text-align: center; 
+        padding: 40px
+      "
+    >
+      <img
+        src="https://i.imgs.ovh/2026/02/09/yKCsfg.png"
+        alt="张荣祥"
+        width="80px"
+        height="70px"
+      />
+      <p 
+        style="
+          font-size: 80px;      /* 更大的字体 */
+          font-weight: bold;    /* 加粗（等价于font-weight: 700） */
+          color: #c1e639;       /* 红色系字体 */
+          font-family: '美国地标', sans-serif; /* 字体名加引号，补充备用字体 */
+        "
+      >
+        美国地标
+      </p>
+    </div>
+    <div
+      style="
+        max-width: 700px;
+        margin: 30px auto;
+        padding: 15px;
+        line-height: 1.7;
+      "
+    >
+      <p class="indent-paragraph">
+        美利坚合众国的行政区划由州级行政区、县级行政区、市级行政区、镇级行政区组成。美国由50个州，1个直辖特区——华盛顿哥伦比亚特区（首都所在地），5个岛屿自由邦和十多个其它远洋小岛组成。美国的县级行政区隶属于州级行政区，是州级行政区的基本组成单位。市级行政区一般隶属于县级行政区，但也有例外，如纽约州的五个县就隶属于纽约市（市级行政区）。美国的镇级行政区一般隶属于县级行政区，可以理解为较小的市，在行政上与市平级。
+      </p>
+      <p class="indent-paragraph">
+        按照最传统的划分方式，美国本土的48个州可以划分为九大区域，分别为：新英格兰，中大西洋地区，东南地区，南方地区，中西部地区，上密西西比-五大湖区，落基山区，太平洋沿岸地区，西南地区。
+      </p>
+    </div>
+
+    <div class="container">
+      <img
+        src="https://i.imgs.ovh/2026/02/09/yKJcGa.png"
+        alt="美国地图全貌"
+        border="2"
+        width="595px"
+        height="453px"
+      />
+    </div>
+        <!-- 父div容器：包裹所有图片+图注子容器 -->
+    <div class="image-container">
+        <!-- 第一张图+图注 -->
+        <div class="image-item">
+          <div class="image-caption">一部分</div>  
+          <img src="https://i.imgs.ovh/2026/02/10/ypZehO.png" alt="图片1">
+        </div>
+        <!-- 第二张图+图注 -->
+        <div class="image-item">
+          <div class="image-caption">二部分</div>  
+          <img src="https://i.imgs.ovh/2026/02/10/ypZTIH.png" alt="图片2">
+        </div>
+        <!-- 第三张图+图注 -->
+        <div class="image-item">
+          <div class="image-caption">三部分</div>  
+          <img src="https://i.imgs.ovh/2026/02/10/ypZ2Xn.png" alt="图片3">
+        </div>
+        <!-- 第四张图+图注 -->
+        <div class="image-item">
+          <div class="image-caption">四部分</div>  
+          <img src="image4.jpg" alt="图片4">
+        </div>
+    </div>
+    <div
+      style="
+        background-color: #f1f1f1;
+        text-align: center;
+        padding: 40px;
+        font-size: 12px;
+      "
+    >
+      <p>我的网站</p>
+    </div>
+  </body>
+</html>
